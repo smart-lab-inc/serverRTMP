@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Stream</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <video id="video" width="800" controls autoplay></video>
+  <!-- Or if you want a more recent alpha version -->
+  <!-- < src="https://cdn.jsdelivr.net/npm/hls.js@alpha"></> -->
+  <!-- Or if you want the latest version from the main branch -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+  <video id="video"></video>
+  <script>
+    var video = document.getElementById('video');
+    var videoSrc = 'http://127.0.0.1:8081/hls/stream.m3u8';
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      video.play();
+    }
+    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.play();
+    }
+  </script>
+  <style>
+    #video {
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      margin: auto;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    video {
+      object-fit: contain;
+      overflow-clip-margin: content-box;
+      overflow: clip;
+    }
+  </style>
+</body>
+
+</html>
