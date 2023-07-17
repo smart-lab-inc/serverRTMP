@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>TITULO</title>
+    
+		<script src="js/hls.js"></script>
+		<script src="js/DPlayer.min.js"></script>
+        
+        <style>
+            body {                
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+	    <div id="dplayer"></div>
+	<script>
+
+const dp = new DPlayer({
+    container: document.getElementById('dplayer'),
+    autoplay: true,	
+    video: {
+	    
+        quality: [
+            {
+                name: 'HQ',
+                url: 'hls/stream.m3u8',
+                type: 'hls',
+            },
+            {
+                name: '',
+                url: '',
+                type: 'hls',
+            },
+        ],
+        defaultQuality: 0,
+        pic: 'demo.png',
+        thumbnails: 'thumbnails.jpg',
+    },
+});
+
+	</script>
+       
+    </body>
+</html>
